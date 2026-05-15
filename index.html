@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>丧尸世界</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="game-header">
+      <h1>丧尸世界</h1>
+      <p class="subtitle">末日生存文字游戏</p>
+    </div>
+    <div id="name-setup">
+      <label for="name-input">请输入你的名字：</label>
+      <input type="text" id="name-input" placeholder="输入角色名..." maxlength="10">
+      <button id="name-btn">开始游戏</button>
+    </div>
+    <div id="game-content" style="display:none;">
+      <div id="stats-panel"></div>
+      <div id="weapon-panel"></div>
+      <div id="inventory-panel"></div>
+      <div id="story-area" class="panel"></div>
+      <div id="options-area"></div>
+    </div>
+    <div id="input-area" style="display:none;">
+      <input type="number" id="action-input" placeholder="输入数字选项..." min="1">
+      <button id="submit-btn">确认</button>
+    </div>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
