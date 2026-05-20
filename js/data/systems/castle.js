@@ -1,0 +1,88 @@
+export const SPECIAL_ITEMS = {
+  noble_id: { id: "noble_id", name: "贵族身份牌", type: "other" },
+  dawn_badge: { id: "dawn_badge", name: "曙光徽章", type: "other" },
+  silence_badge: { id: "silence_badge", name: "寂灭徽章", type: "other" },
+  viscount_id: { id: "viscount_id", name: "子爵身份牌", type: "other" },
+  count_id: { id: "count_id", name: "伯爵身份牌", type: "other" },
+  marquis_id: { id: "marquis_id", name: "侯爵身份牌", type: "other" },
+  duke_id: { id: "duke_id", name: "公爵身份牌", type: "other" },
+  crown_prince_id: { id: "crown_prince_id", name: "储君身份牌", type: "other" },
+  dawn_captain_badge: { id: "dawn_captain_badge", name: "曙光队长徽章", type: "other" },
+  underground_key: { id: "underground_key", name: "地下钥匙", type: "other" },
+  farming_master_badge: { id: "farming_master_badge", name: "农业大师徽章", type: "other" },
+  miaomiao_diary: { id: "miaomiao_diary", name: "苗苗日记本", type: "other" },
+  strange_recorder: { id: "strange_recorder", name: "奇怪录音笔", type: "other" },
+  letter_to_sister: { id: "letter_to_sister", name: "给妹妹的信", type: "other" },
+  queen_reply: { id: "queen_reply", name: "皇后的回信", type: "other" },
+  love_token: { id: "love_token", name: "定情信物", type: "other" },
+  castle_pass: { id: "castle_pass", name: "城堡通行证", type: "other" },
+  car_key: { id: "car_key", name: "车钥匙", type: "other" },
+};
+
+export const CASTLE_RANKS = [
+  { id: "noble_id", rank: 1, name: "贵族", itemId: "noble_id", displayName: "末日城堡贵族" },
+  { id: "viscount_id", rank: 2, name: "子爵", itemId: "viscount_id", displayName: "末日城堡子爵" },
+  { id: "count_id", rank: 3, name: "伯爵", itemId: "count_id", displayName: "末日城堡伯爵" },
+  { id: "marquis_id", rank: 4, name: "侯爵", itemId: "marquis_id", displayName: "末日城堡侯爵" },
+  { id: "duke_id", rank: 5, name: "公爵", itemId: "duke_id", displayName: "末日城堡公爵" },
+  { id: "crown_prince_id", rank: 6, name: "储君", itemId: "crown_prince_id", displayName: "末日城堡储君" },
+];
+
+export const KING_QUESTS = [
+  {
+    id: "king_1",
+    name: "皇后的烦恼",
+    desc: "提交10个葡萄糖服液",
+    story: "国王叹了口气，压低声音对你说道：\"皇后近来总是头晕目眩，城堡的医生说她是低血糖。这末世里，能弄到葡萄糖服液的地方不多了……你帮我去外面搜集10个葡萄糖服液回来，事成之后，我封你为子爵。\"",
+    submitStory: "国王接过10支葡萄糖服液，满意地点了点头：\"太好了！皇后有救了！你果然是个人才。来人，赐予他子爵身份牌！\"",
+    require: { medicine: 10, medicineId: "葡萄糖服液" },
+    reward: { item: "子爵身份牌", rankItemId: "viscount_id", rank: 2 },
+    prereqQuest: null,
+  },
+  {
+    id: "king_2",
+    name: "国王的宴会",
+    desc: "提交10瓶高度白酒",
+    story: "国王搓着手，眼中闪烁着兴奋的光芒：\"孤王要举办一场盛大的宴会！那些城堡里的老家伙们整天愁眉苦脸，孤王得让他们开开眼界！高度白酒，越烈越好！去给我找10瓶来！事成之后，你就是伯爵了！\"",
+    submitStory: "国王看着10瓶高度白酒，哈哈大笑：\"好！好！这才是真男人喝的！今晚的宴会，我要让全城堡的人都喝个痛快！从今天起，你就是伯爵！\"",
+    require: { drinks: 10, drinkId: "高度白酒" },
+    reward: { item: "伯爵身份牌", rankItemId: "count_id", rank: 3 },
+    prereqQuest: "king_1",
+  },
+  {
+    id: "king_3",
+    name: "国王的嗜好",
+    desc: "提交10根香烟、5瓶百味啤酒和5瓶动力啤酒",
+    story: "国王靠在王座上，手指轻轻敲打着扶手：\"孤王最近胃口不太好，想换换口味。去，帮孤王弄些香烟来，再来些百味啤酒和动力啤酒提提神。10根香烟、5瓶百味啤酒、5瓶动力啤酒，记住了。\" 他凑近你低声说：\"办好了，你就是侯爵。\"",
+    submitStory: "国王满意地收下了所有物资：\"好！香烟配啤酒，这才是生活！你果然懂得讨孤王欢心！侯爵之位，非你莫属！\"",
+    require: {
+      items: [
+        { type: "cigarettes", count: 10 },
+        { type: "drinks", id: "百味啤酒", count: 5 },
+        { type: "drinks", id: "动力啤酒", count: 5 },
+      ]
+    },
+    reward: { item: "侯爵身份牌", rankItemId: "marquis_id", rank: 4 },
+    prereqQuest: "king_2",
+  },
+  {
+    id: "king_4",
+    name: "长生不老",
+    desc: "提交3支万能针剂",
+    story: "国王眼神中透出一丝狂热：\"孤王最近在研究一个课题——永生。据说有一种万能针剂，能治愈一切伤病，甚至逆转衰老。孤王需要3支来做研究。如果你能弄来，公爵之位就是你的！\"",
+    submitStory: "国王颤抖着双手接过3支万能针剂，声音都变了调：\"这……这就是传说中的万能针剂？！传说果然是真的！孤王的长生不老之梦不远了！你将是孤王最信任的公爵！\"",
+    require: { medicine: 3, medicineId: "万能针剂" },
+    reward: { item: "公爵身份牌", rankItemId: "duke_id", rank: 5 },
+    prereqQuest: "king_3",
+  },
+  {
+    id: "king_5",
+    name: "清除异己",
+    desc: "暗杀曙光阵地首领",
+    story: "国王脸色阴沉，压低了声音：\"曙光阵地的那个首领……他一直在招兵买马，早晚会威胁到我的统治。你去，把他解决了。记住，他可不是等闲之辈，身手堪比丧尸之王。事成之后，你就是储君——这座城堡未来的继承人！\"",
+    submitStory: "国王得知阵地首领已死，狂笑了三声，随即又收敛了笑容：\"很好……很好！你证明了自己的价值。从今天起，你便是这座城堡的储君！孤王百年之后，这江山就是你的！\"",
+    require: { assassinate: "leader" },
+    reward: { item: "储君身份牌", rankItemId: "crown_prince_id", rank: 6 },
+    prereqQuest: "king_4",
+  },
+];

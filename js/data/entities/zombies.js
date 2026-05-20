@@ -1,0 +1,18 @@
+export const ZOMBIES = [
+  { id: "普通游荡丧尸", name: "普通游荡丧尸", hp: 120, damage: 16, dodge: 0.05, ability: ["infect"] },
+  { id: "腐烂腐尸", name: "腐烂腐尸", hp: 100, damage: 24, dodge: 0, ability: ["infect"] },
+  { id: "爬行尸", name: "爬行尸", hp: 60, damage: 14, dodge: 0.2, ability: ["infect", "trip"] },
+  { id: "疾行丧尸", name: "疾行丧尸", hp: 80, damage: 30, dodge: 0.35, ability: ["infect", "screech"] },
+  { id: "肥胖臃肿尸", name: "肥胖臃肿尸", hp: 240, damage: 20, dodge: 0, ability: ["infect", "selfDestruct"] },
+  { id: "爆裂尸", name: "爆裂尸", hp: 120, damage: 18, dodge: 0, ability: ["explosive"] },
+  { id: "军警丧尸", name: "军警丧尸", hp: 160, damage: 36, dodge: 0.1, ability: ["infect", "corrode"] },
+  { id: "群居尸母", name: "群居尸母", hp: 140, damage: 16, dodge: 0, ability: ["summon"] },
+  { id: "铁甲尸", name: "铁甲尸", hp: 280, damage: 22, dodge: 0, ability: ["armor", "infect"] },
+  { id: "冰霜尸", name: "冰霜尸", hp: 150, damage: 26, dodge: 0.1, ability: ["freeze"] },
+  { id: "撕裂狂暴尸", name: "撕裂狂暴尸", hp: 200, damage: 50, dodge: 0.05, ability: ["blind", "corrode"] },
+  { id: "酸液喷射尸", name: "酸液喷射尸", hp: 240, damage: 28, dodge: 0.05, ability: ["acid"] },
+  { id: "跳跃尸", name: "跳跃尸", hp: 100, damage: 38, dodge: 0.35, ability: ["leap", "infect"] },
+  { id: "巨型坦克尸", name: "巨型坦克尸", hp: 300, damage: 40, dodge: 0, ability: ["selfDestruct"] },
+  { id: "幽灵潜行尸", name: "幽灵潜行尸", hp: 80, damage: 30, dodge: 0.5, ability: ["cloak"] },
+  { id: "穿刺尸", name: "穿刺尸", hp: 180, damage: 42, dodge: 0.12, ability: ["impale", "corrode"] },
+];
