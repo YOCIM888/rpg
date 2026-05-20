@@ -1,0 +1,254 @@
+category,type,item_id,item_name,command,extra_info
+食物,food,花生米,花生米,/get_food_花生米_10,饱腹+5
+食物,food,兰花豆,兰花豆,/get_food_兰花豆_10,饱腹+5
+食物,food,小坚果,小坚果,/get_food_小坚果_10,饱腹+10
+食物,food,棒棒糖,棒棒糖,/get_food_棒棒糖_10,饱腹+10
+食物,food,能量棒,能量棒,/get_food_能量棒_10,饱腹+20
+食物,food,巧克力,巧克力,/get_food_巧克力_10,饱腹+20
+食物,food,干脆面,干脆面,/get_food_干脆面_10,饱腹+20
+食物,food,银耳羹,银耳羹,/get_food_银耳羹_10,饱腹+20 水分+20
+食物,food,海苔脆,海苔脆,/get_food_海苔脆_10,饱腹+20
+食物,food,压缩饼干,压缩饼干,/get_food_压缩饼干_10,饱腹+30
+食物,food,小麦面包,小麦面包,/get_food_小麦面包_10,饱腹+30
+食物,food,黄桃罐头,黄桃罐头,/get_food_黄桃罐头_10,饱腹+40 水分+10
+食物,food,豆类罐头,豆类罐头,/get_food_豆类罐头_10,饱腹+40 水分+10
+食物,food,牛肉罐头,牛肉罐头,/get_food_牛肉罐头_10,饱腹+40 水分+10
+食物,food,军粮罐头,军粮罐头,/get_food_军粮罐头_10,饱腹+60 水分+10
+食物,food,沙丁鱼罐头,沙丁鱼罐头,/get_food_沙丁鱼罐头_10,饱腹+40 水分+15
+食物,food,金枪鱼罐头,金枪鱼罐头,/get_food_金枪鱼罐头_10,饱腹+40 水分+15
+食物,food,秋刀鱼罐头,秋刀鱼罐头,/get_food_秋刀鱼罐头_10,饱腹+40 水分+15
+食物,food,青花鱼罐头,青花鱼罐头,/get_food_青花鱼罐头_10,饱腹+40 水分+15
+食物,海鲜套餐,难吃海鲜套餐,bad_seafood_meal,/get_seafood_bad_seafood_meal_1,饱腹+20 水分+20 生命+30 崩溃+20 感染+10
+食物,海鲜套餐,一般海鲜套餐,normal_seafood_meal,/get_seafood_normal_seafood_meal_1,饱腹+40 水分+40 生命+50 崩溃+15 感染+8
+食物,海鲜套餐,美味海鲜套餐,delicious_seafood_meal,/get_seafood_delicious_seafood_meal_1,饱腹+60 水分+60 生命+70 崩溃+10 感染+5
+食物,海鲜套餐,诱人海鲜套餐,tempting_seafood_meal,/get_seafood_tempting_seafood_meal_1,饱腹+80 水分+80 生命+100 崩溃+5 感染+3
+食物,海鲜套餐,顶尖海鲜套餐,top_seafood_meal,/get_seafood_top_seafood_meal_1,饱腹+100 水分+100 生命+120 崩溃+1 感染+1
+饮品,drink,矿泉水,矿泉水,/get_drink_矿泉水_10,水分+40
+饮品,drink,椰子汁,椰子汁,/get_drink_椰子汁_10,水分+45
+饮品,drink,果粒橙,果粒橙,/get_drink_果粒橙_10,水分+30
+饮品,drink,纯牛奶,纯牛奶,/get_drink_纯牛奶_10,水分+35
+饮品,drink,优酸乳,优酸乳,/get_drink_优酸乳_10,水分+35
+饮品,drink,苹果醋,苹果醋,/get_drink_苹果醋_10,水分+35
+饮品,drink,魔爪饮料,魔爪饮料,/get_drink_魔爪饮料_10,水分+60
+饮品,drink,电解质水,电解质水,/get_drink_电解质水_10,水分+60
+饮品,drink,运动饮料,运动饮料,/get_drink_运动饮料_10,水分+60
+饮品,drink,百味啤酒,百味啤酒,/get_drink_百味啤酒_10,水分+5 崩溃-10
+饮品,drink,动力啤酒,动力啤酒,/get_drink_动力啤酒_10,水分+5 崩溃-10
+饮品,drink,高度白酒,高度白酒,/get_drink_高度白酒_10,水分+0 崩溃-30
+饮品,酒吧饮品,心动彩虹啤,rainbow_beer,/get_bar_rainbow_beer_1,崩溃-20
+饮品,酒吧饮品,爱神伏特加,vodka_love,/get_bar_vodka_love_1,崩溃-40
+饮品,酒吧饮品,皇后白兰地,queen_brandy,/get_bar_queen_brandy_1,崩溃-70
+饮品,酒吧饮品,国王特调酒,king_special,/get_bar_king_special_1,崩溃-90
+饮品,酒吧饮品,伴舞的女郎,dancing_girl,/get_bar_dancing_girl_1,崩溃-100
+饮品,酒吧饮品,水果龙王套,fruit_king_set,/get_bar_fruit_king_set_1,饱食+100 水分+100 崩溃-100
+水果,fruit,苹果,苹果,/get_fruit_苹果_10,饱腹+15 水分+20
+水果,fruit,香蕉,香蕉,/get_fruit_香蕉_10,饱腹+20 水分+15
+水果,fruit,橙子,橙子,/get_fruit_橙子_10,饱腹+12 水分+25
+水果,fruit,雪梨,雪梨,/get_fruit_雪梨_10,饱腹+14 水分+22
+水果,fruit,葡萄,葡萄,/get_fruit_葡萄_10,饱腹+10 水分+28
+水果,fruit,西瓜,西瓜,/get_fruit_西瓜_10,饱腹+18 水分+35
+水果,fruit,草莓,草莓,/get_fruit_草莓_10,饱腹+10 水分+20
+水果,fruit,蓝莓,蓝莓,/get_fruit_蓝莓_10,饱腹+5 水分+18
+水果,fruit,桃子,桃子,/get_fruit_桃子_10,饱腹+16 水分+22
+水果,fruit,芒果,芒果,/get_fruit_芒果_10,饱腹+22 水分+25
+水果,fruit,柿子,柿子,/get_fruit_柿子_10,饱腹+15 水分+15
+药品,medicine,创可贴,创可贴,/get_medicine_创可贴_10,HP+10(普通)
+药品,medicine,葡萄糖服液,葡萄糖服液,/get_medicine_葡萄糖服液_10,HP+25 水分+15(普通)
+药品,medicine,止痛片,止痛片,/get_medicine_止痛片_10,HP+15 崩溃-5(优秀)
+药品,medicine,肾上腺素,肾上腺素,/get_medicine_肾上腺素_10,HP+20 崩溃-10(优秀)
+药品,medicine,止血带,止血带,/get_medicine_止血带_10,HP+30(优秀)
+药品,medicine,清创药,清创药,/get_medicine_清创药_10,感染-25(优秀)
+药品,medicine,手术包,手术包,/get_medicine_手术包_10,HP+25 崩溃-10(稀有)
+药品,medicine,抗生素,抗生素,/get_medicine_抗生素_10,HP+35 感染-25(稀有)
+药品,medicine,抗感染血清,抗感染血清,/get_medicine_抗感染血清_10,感染-60(稀有)
+药品,medicine,医用急救包,医用急救包,/get_medicine_医用急救包_10,HP+70(史诗)
+药品,medicine,战地医疗箱,战地医疗箱,/get_medicine_战地医疗箱_10,HP+120 崩溃-30(史诗)
+药品,medicine,万能针剂,万能针剂,/get_medicine_万能针剂_10,HP+150 崩溃-50 感染-50 水分+20(传说)
+药品,medicine,improved_serum,改良抗体针,/get_medicine_改良抗体针_10,感染-90(传说)
+药品,medicine,zombie_gel,丧尸凝胶,/get_medicine_zombie_gel_10,丧尸体内析出的黏稠物质(普通)
+香烟,cigarette,香烟,香烟,/get_cigarette_香烟_20,末日硬通货(不占背包空间)
+货币,royalcoin,皇家币,皇家币,/get_royalcoin_皇家币_10,皇家交易货币(不占背包空间)
+汽油,gasoline,汽油,汽油,/get_gasoline_汽油_5,游艇/越野车燃料(不占背包空间)
+弹药,ammo,箭矢,箭矢,/get_ammo_arrow_100,弓弩专用弹药
+弹药,ammo,.357 Magnum,.357 Magnum,/get_ammo_magnum_50,GP100左轮使用
+弹药,ammo,.45 ACP,.45 ACP,/get_ammo_.45 ACP_50,M1911/UMP45使用
+弹药,ammo,.50 AE,.50 AE,/get_ammo_.50 AE_30,沙漠之鹰使用
+弹药,ammo,9×19mm,9×19mm,/get_ammo_9mm_100,常见手枪/冲锋枪弹药
+弹药,ammo,5.7×28mm,5.7×28mm,/get_ammo_5.7×28mm_100,P90使用
+弹药,ammo,7.62×39mm,7.62×39mm,/get_ammo_762_100,AK系列步枪使用
+弹药,ammo,5.56×45mm NATO,5.56×45mm NATO,/get_ammo_556_100,M4/HK416/AUG使用
+弹药,ammo,7.62×51mm,7.62×51mm,/get_ammo_76251_50,M700/FAL/SR25使用
+弹药,ammo,7.62×54mmR,7.62×54mmR,/get_ammo_7.62×54mmR_50,Mosin/PKM使用
+弹药,ammo,7.92×57mm,7.92×57mm,/get_ammo_7.92×57mm_50,MG42使用
+弹药,ammo,.300 Winchester Magnum,.300 Winchester Magnum,/get_ammo_300_30,AWM狙击枪使用
+弹药,ammo,12号霰弹,12号霰弹,/get_ammo_shotgun_50,霰弹枪使用
+建材,building,wood,木材,/get_building_wood_10,基地建设材料
+建材,building,building_mat,建筑材料,/get_building_building_mat_10,基地建设材料
+建材,building,stone,石头,/get_building_stone_10,基地建设材料
+建材,building,nails,铁钉,/get_building_nails_10,基地建设材料
+建材,building,glass,玻璃,/get_building_glass_10,基地建设材料
+建材,building,pure_energy,纯净能源,/get_building_pure_energy_30,火箭推进剂燃料
+建材,building,small_nuclear_generator,小核能发电机,/get_building_small_nuclear_generator_1,发射火箭必需设备
+种子,seed,seed_niupicai,牛皮菜种子,/get_seed_seed_niupicai_10,种植牛皮菜
+种子,seed,seed_machixian,马齿苋种子,/get_seed_seed_machixian_10,种植马齿苋
+种子,seed,seed_juju,菊苣种子,/get_seed_seed_juju_10,种植菊苣
+种子,seed,seed_yangjiang,洋姜种子,/get_seed_seed_yangjiang_10,种植洋姜
+种子,seed,seed_mushu,木薯种子,/get_seed_seed_mushu_10,种植木薯
+种子,seed,seed_hongshu,红薯种子,/get_seed_seed_hongshu_10,种植红薯
+种子,seed,seed_tudou,土豆种子,/get_seed_seed_tudou_10,种植土豆
+种子,seed,seed_wujing,芜菁种子,/get_seed_seed_wujing_10,种植芜菁
+种子,seed,seed_boluomencan,婆罗门参种子,/get_seed_seed_boluomencan_10,种植婆罗门参
+种子,seed,seed_luobo,胡萝卜种子,/get_seed_seed_luobo_10,种植胡萝卜
+种子,seed,seed_jiucai,韭菜种子,/get_seed_seed_jiucai_10,种植韭菜
+种子,seed,seed_gouqi,枸杞种子,/get_seed_seed_gouqi_10,种植枸杞
+种子,seed,seed_suanmo,酸模种子,/get_seed_seed_suanmo_10,种植酸模
+种子,seed,seed_heimai,黑麦种子,/get_seed_seed_heimai_10,种植黑麦
+种子,seed,seed_wandou,豌豆种子,/get_seed_seed_wandou_10,种植豌豆
+作物,crop,niupicai,牛皮菜,/get_crop_niupicai_10,饱腹+8 水分+12(来自种植)
+作物,crop,machixian,马齿苋,/get_crop_machixian_10,饱腹+6 水分+15(来自种植)
+作物,crop,juju,菊苣,/get_crop_juju_10,饱腹+10 水分+10(来自种植)
+作物,crop,yangjiang,洋姜,/get_crop_yangjiang_10,饱腹+18(来自种植)
+作物,crop,mushu,木薯,/get_crop_mushu_10,饱腹+30(来自种植)
+作物,crop,hongshu,红薯,/get_crop_hongshu_10,饱腹+28 水分+8(来自种植)
+作物,crop,tudou,土豆,/get_crop_tudou_10,饱腹+22(来自种植)
+作物,crop,wujing,芜菁,/get_crop_wujing_10,饱腹+20 水分+5(来自种植)
+作物,crop,boluomencan,婆罗门参,/get_crop_boluomencan_10,饱腹+24(来自种植)
+作物,crop,luobo,胡萝卜,/get_crop_luobo_10,饱腹+18 水分+12(来自种植)
+作物,crop,jiucai,韭菜,/get_crop_jiucai_10,饱腹+8 水分+8(来自种植)
+作物,crop,gouqi,枸杞,/get_crop_gouqi_10,饱腹+10 水分+15(来自种植)
+作物,crop,suanmo,酸模,/get_crop_suanmo_10,饱腹+8 水分+18(来自种植)
+作物,crop,heimai,黑麦,/get_crop_heimai_10,饱腹+32(来自种植)
+作物,crop,wandou,豌豆,/get_crop_wandou_10,饱腹+20 水分+10(来自种植)
+近战武器,melee,菜刀,菜刀,/get_melee_菜刀_1,伤害:20 耐久:100 连击:5%(普通)
+近战武器,melee,棍棒,棍棒,/get_melee_棍棒_1,伤害:24 耐久:50 连击:5%(普通)
+近战武器,melee,鹤嘴锄,鹤嘴锄,/get_melee_鹤嘴锄_1,伤害:28 耐久:50 连击:5%(普通)
+近战武器,melee,小铁锤,小铁锤,/get_melee_小铁锤_1,伤害:32 耐久:50 连击:5%(普通)
+近战武器,melee,平底锅,平底锅,/get_melee_平底锅_1,伤害:30 耐久:100 连击:5%(普通)
+近战武器,melee,大扳手,大扳手,/get_melee_大扳手_1,伤害:36 耐久:50 连击:5%(普通)
+近战武器,melee,棒球棍,棒球棍,/get_melee_棒球棍_1,伤害:42 耐久:50 连击:5%(普通)
+近战武器,melee,铁管,铁管,/get_melee_铁管_1,伤害:46 耐久:35 连击:5%(普通)
+近战武器,melee,铁铲,铁铲,/get_melee_铁铲_1,伤害:48 耐久:50 连击:5%(普通)
+近战武器,melee,小匕首,小匕首,/get_melee_小匕首_1,伤害:40 耐久:40 连击:8%(优秀)
+近战武器,melee,屠刀,屠刀,/get_melee_屠刀_1,伤害:42 耐久:35 连击:8%(优秀)
+近战武器,melee,警棍,警棍,/get_melee_警棍_1,伤害:50 耐久:50 连击:8%(优秀)
+近战武器,melee,撬棍,撬棍,/get_melee_撬棍_1,伤害:60 耐久:55 连击:8%(优秀)
+近战武器,melee,羊角锤,羊角锤,/get_melee_羊角锤_1,伤害:64 耐久:60 连击:8%(优秀)
+近战武器,melee,短柄斧,短柄斧,/get_melee_短柄斧_1,伤害:65 耐久:50 连击:8%(优秀)
+近战武器,melee,消防斧,消防斧,/get_melee_消防斧_1,伤害:68 耐久:65 连击:8%(优秀)
+近战武器,melee,狩猎刀,狩猎刀,/get_melee_狩猎刀_1,伤害:69 耐久:70 连击:8%(优秀)
+近战武器,melee,军用刀,军用刀,/get_melee_军用刀_1,伤害:70 耐久:77 连击:8%(优秀)
+近战武器,melee,指虎刀,指虎刀,/get_melee_指虎刀_1,伤害:66 耐久:90 连击:12%(稀有)
+近战武器,melee,大砍刀,大砍刀,/get_melee_大砍刀_1,伤害:70 耐久:65 连击:12%(稀有)
+近战武器,melee,斩马刀,斩马刀,/get_melee_斩马刀_1,伤害:72 耐久:60 连击:12%(稀有)
+近战武器,melee,九节鞭,九节鞭,/get_melee_九节鞭_1,伤害:75 耐久:65 连击:12%(稀有)
+近战武器,melee,西洋剑,西洋剑,/get_melee_西洋剑_1,伤害:79 耐久:70 连击:12%(稀有)
+近战武器,melee,流星锤,流星锤,/get_melee_流星锤_1,伤害:82 耐久:50 连击:12%(稀有)
+近战武器,melee,钢胁差,钢胁差,/get_melee_钢胁差_1,伤害:85 耐久:20 连击:12%(稀有)
+近战武器,melee,龙抄剑,龙抄剑,/get_melee_龙抄剑_1,伤害:88 耐久:66 连击:12%(稀有)
+近战武器,melee,长骑枪,长骑枪,/get_melee_长骑枪_1,伤害:90 耐久:80 连击:12%(稀有)
+近战武器,melee,双刃剑,双刃剑,/get_melee_双刃剑_1,伤害:92 耐久:100 连击:15%(史诗)
+近战武器,melee,马来剑,马来剑,/get_melee_马来剑_1,伤害:95 耐久:30 连击:15%(史诗)
+近战武器,melee,武士刀,武士刀,/get_melee_武士刀_1,伤害:99 耐久:40 连击:15%(史诗)
+近战武器,melee,唐横刀,唐横刀,/get_melee_唐横刀_1,伤害:102 耐久:70 连击:15%(史诗)
+近战武器,melee,电锯,电锯,/get_melee_电锯_1,伤害:105 耐久:120 连击:15%(史诗)
+近战武器,melee,勇者之剑,勇者之剑,/get_melee_勇者之剑_1,伤害:109 耐久:50 连击:18%(传奇)
+近战武器,melee,寰宇之剑,寰宇之剑,/get_melee_寰宇之剑_1,伤害:118 耐久:100 连击:18%(传奇)
+近战武器,melee,无畏之刃,无畏之刃,/get_melee_无畏之刃_1,伤害:130 耐久:100 连击:20%(传奇)
+近战武器,melee,尚方宝剑,尚方宝剑,/get_melee_尚方宝剑_1,伤害:250 耐久:1 连击:18%(传奇)
+近战武器,melee,皇家银剑,皇家银剑,/get_melee_皇家银剑_1,伤害:88 耐久:188 连击:20%(传奇)
+远程武器,ranged,木弓,木弓,/get_ranged_木弓_1,伤害:18 暴击:5%(普通/箭矢)
+远程武器,ranged,反曲弓,反曲弓,/get_ranged_反曲弓_1,伤害:24 暴击:6%(普通/箭矢)
+远程武器,ranged,复合弓,复合弓,/get_ranged_复合弓_1,伤害:32 暴击:8%(优秀/箭矢)
+远程武器,ranged,十字弩,十字弩,/get_ranged_十字弩_1,伤害:40 暴击:9%(优秀/箭矢)
+远程武器,ranged,折叠弩,折叠弩,/get_ranged_折叠弩_1,伤害:48 暴击:10%(稀有/箭矢)
+远程武器,ranged,狙击弩,狙击弩,/get_ranged_狙击弩_1,伤害:56 暴击:11%(稀有/箭矢)
+远程武器,ranged,USP9,USP9,/get_ranged_USP9_1,伤害:32 暴击:16%(普通/9×19mm)
+远程武器,ranged,G17,G17,/get_ranged_G17_1,伤害:30 暴击:15%(普通/9×19mm)
+远程武器,ranged,P226,P226,/get_ranged_P226_1,伤害:28 暴击:18%(普通/9×19mm)
+远程武器,ranged,GP100,GP100,/get_ranged_GP100_1,伤害:49 暴击:20%(普通/.357)
+远程武器,ranged,M1911,M1911,/get_ranged_M1911_1,伤害:36 暴击:18%(普通/.45 ACP)
+远程武器,ranged,Deagle,Desert Eagle,/get_ranged_Deagle_1,伤害:65 暴击:12%(稀有/.50 AE)
+远程武器,ranged,UZI,UZI,/get_ranged_UZI_1,伤害:42 暴击:18%(优秀/9×19mm)
+远程武器,ranged,MP5,MP5,/get_ranged_MP5_1,伤害:45 暴击:20%(优秀/9×19mm)
+远程武器,ranged,MP7,MP7,/get_ranged_MP7_1,伤害:48 暴击:22%(优秀/9×19mm)
+远程武器,ranged,Vector,Vector,/get_ranged_Vector_1,伤害:50 暴击:23%(优秀/9×19mm)
+远程武器,ranged,P90,P90,/get_ranged_P90_1,伤害:40 暴击:21%(优秀/5.7×28mm)
+远程武器,ranged,UMP45,UMP45,/get_ranged_UMP45_1,伤害:52 暴击:19%(优秀/.45 ACP)
+远程武器,ranged,M16A4,M16A4,/get_ranged_M16A4_1,伤害:49 暴击:22%(优秀/5.56mm)
+远程武器,ranged,M4A1,M4A1,/get_ranged_M4A1_1,伤害:50 暴击:24%(优秀/5.56mm)
+远程武器,ranged,HK416,HK416,/get_ranged_HK416_1,伤害:52 暴击:25%(优秀/5.56mm)
+远程武器,ranged,SG552,SG552,/get_ranged_SG552_1,伤害:53 暴击:23%(优秀/5.56mm)
+远程武器,ranged,AUG,AUG,/get_ranged_AUG_1,伤害:55 暴击:25%(稀有/5.56mm)
+远程武器,ranged,AK47,AK47,/get_ranged_AK47_1,伤害:55 暴击:20%(优秀/7.62×39mm)
+远程武器,ranged,AKM,AKM,/get_ranged_AKM_1,伤害:57 暴击:20%(优秀/7.62×39mm)
+远程武器,ranged,81式,81式,/get_ranged_81式_1,伤害:60 暴击:22%(优秀/7.62×39mm)
+远程武器,ranged,SKS,SKS,/get_ranged_SKS_1,伤害:65 暴击:28%(稀有/7.62×39mm)
+远程武器,ranged,M249,M249 SAW,/get_ranged_M249_1,伤害:58 暴击:22%(稀有/5.56mm)
+远程武器,ranged,RPK,RPK,/get_ranged_RPK_1,伤害:62 暴击:23%(稀有/7.62×39mm)
+远程武器,ranged,MG42,MG42,/get_ranged_MG42_1,伤害:65 暴击:21%(稀有/7.92×57mm)
+远程武器,ranged,PKM,PKM,/get_ranged_PKM_1,伤害:68 暴击:24%(史诗/7.62×54mmR)
+远程武器,ranged,M60,M60,/get_ranged_M60_1,伤害:63 暴击:22%(稀有/7.62×51mm)
+远程武器,ranged,FAL,FAL,/get_ranged_FAL_1,伤害:72 暴击:22%(稀有/7.62×51mm)
+远程武器,ranged,EBR14,EBR14,/get_ranged_EBR14_1,伤害:80 暴击:30%(稀有/7.62×51mm)
+远程武器,ranged,SR25,SR25,/get_ranged_SR25_1,伤害:95 暴击:32%(史诗/7.62×51mm)
+远程武器,ranged,SCARH,SCAR-H,/get_ranged_SCARH_1,伤害:68 暴击:26%(稀有/7.62×51mm)
+远程武器,ranged,AN94,AN-94,/get_ranged_AN94_1,伤害:56 暴击:27%(史诗/5.56mm)
+远程武器,ranged,M700,M700,/get_ranged_M700_1,伤害:120 暴击:35%(稀有/7.62×51mm)
+远程武器,ranged,Mosin,Mosin-Nagant,/get_ranged_Mosin_1,伤害:135 暴击:38%(稀有/7.62×54mmR)
+远程武器,ranged,AWM,AWM,/get_ranged_AWM_1,伤害:200 暴击:45%(传奇/.300 Win Mag)
+远程武器,ranged,M870,M870,/get_ranged_M870_1,伤害:80 暴击:10%(优秀/12号霰弹)
+远程武器,ranged,AA12,AA12,/get_ranged_AA12_1,伤害:88 暴击:12%(优秀/12号霰弹)
+远程武器,ranged,SPAS12,SPAS-12,/get_ranged_SPAS12_1,伤害:95 暴击:11%(稀有/12号霰弹)
+远程武器,ranged,原野之弓,原野之弓,/get_ranged_原野之弓_1,伤害:52 暴击:52%(传奇/箭矢)
+远程武器,ranged,皇家短枪,皇家短枪,/get_ranged_皇家短枪_1,伤害:99 暴击:29%(传奇/.357 Magnum)
+背包,backpack,小腰包,小腰包,/get_backpack_小腰包_1,容量:20(普通)
+背包,backpack,小书包,小书包,/get_backpack_小书包_1,容量:22(普通)
+背包,backpack,手提包,手提包,/get_backpack_手提包_1,容量:18(普通)
+背包,backpack,帆布背包,帆布背包,/get_backpack_帆布背包_1,容量:24(普通)
+背包,backpack,时尚背包,时尚背包,/get_backpack_时尚背包_1,容量:26(优秀)
+背包,backpack,运动背包,运动背包,/get_backpack_运动背包_1,容量:28(优秀)
+背包,backpack,登山背包,登山背包,/get_backpack_登山背包_1,容量:32(优秀)
+背包,backpack,军用背包,军用背包,/get_backpack_军用背包_1,容量:36(稀有)
+背包,backpack,战术背包,战术背包,/get_backpack_战术背包_1,容量:39(稀有)
+背包,backpack,特种背包,特种背包,/get_backpack_特种背包_1,容量:42(稀有)
+背包,backpack,大型登山背包,大型登山背包,/get_backpack_大型登山背包_1,容量:48(史诗)
+背包,backpack,超大旅行背包,超大旅行背包,/get_backpack_超大旅行背包_1,容量:56(史诗)
+背包,backpack,超大负重背包,超大负重背包,/get_backpack_超大负重背包_1,容量:64(史诗)
+背包,backpack,次元收纳背包,次元收纳背包,/get_backpack_次元收纳背包_1,容量:68(传说)
+特殊物品,special,noble_id,贵族身份牌,/get_special_noble_id_1,城堡贵族凭证
+特殊物品,special,viscount_id,子爵身份牌,/get_special_viscount_id_1,子爵爵位凭证
+特殊物品,special,count_id,伯爵身份牌,/get_special_count_id_1,伯爵爵位凭证
+特殊物品,special,marquis_id,侯爵身份牌,/get_special_marquis_id_1,侯爵爵位凭证
+特殊物品,special,duke_id,公爵身份牌,/get_special_duke_id_1,公爵爵位凭证
+特殊物品,special,crown_prince_id,储君身份牌,/get_special_crown_prince_id_1,储君爵位凭证
+特殊物品,special,dawn_badge,曙光徽章,/get_special_dawn_badge_1,曙光阵地凭证
+特殊物品,special,dawn_captain_badge,曙光队长徽章,/get_special_dawn_captain_badge_1,曙光先锋队长凭证
+特殊物品,special,silence_badge,寂灭徽章,/get_special_silence_badge_1,击败尸王的纪念品
+特殊物品,special,underground_key,地下钥匙,/get_special_underground_key_1,通往城堡地下区域的钥匙
+特殊物品,special,farming_master_badge,农业大师徽章,/get_special_farming_master_badge_1,农业大师纪念品
+特殊物品,special,miaomiao_diary,苗苗日记本,/get_special_miaomiao_diary_1,苗苗的日记本
+特殊物品,special,strange_recorder,奇怪录音笔,/get_special_strange_recorder_1,录音笔
+特殊物品,special,letter_to_sister,给妹妹的信,/get_special_letter_to_sister_1,阵地首领的信
+特殊物品,special,queen_reply,皇后的回信,/get_special_queen_reply_1,皇后的回信
+特殊物品,special,love_token,定情信物,/get_special_love_token_1,向日葵吊坠
+特殊物品,special,castle_pass,城堡通行证,/get_special_castle_pass_1,城堡通行凭证
+特殊物品,special,car_key,车钥匙,/get_special_car_key_1,柳如烟越野车钥匙
+属性修改,health,health,生命值,/get_health_100,增加生命值(上限240)
+属性修改,full,full,完全恢复,/get_full_1,恢复全部属性到满值
+属性修改,day,day,天数推进,/get_day_10,推进游戏天数
+鱼类,fish,grey_mullet,灰背鲻鱼,/get_fish_grey_mullet_1,(普通)
+鱼类,fish,iron_sardine,铁皮沙丁鱼,/get_fish_iron_sardine_1,(普通)
+鱼类,fish,blunt_seabream,钝头海鲫,/get_fish_blunt_seabream_1,(普通)
+鱼类,fish,blacktail_mackerel,黑尾鲭鱼,/get_fish_blacktail_mackerel_1,(普通)
+鱼类,fish,ray_barracuda,辐纹梭鱼,/get_fish_ray_barracuda_1,(优秀)
+鱼类,fish,rust_flounder,锈甲比目鱼,/get_fish_rust_flounder_1,(优秀)
+鱼类,fish,twin_grouper,双头石斑,/get_fish_twin_grouper_1,(优秀)
+鱼类,fish,sewage_eel,污水鳗,/get_fish_sewage_eel_1,(优秀)
+鱼类,fish,corpse_cod,腐尸鳕鱼,/get_fish_corpse_cod_1,(稀有)
+鱼类,fish,spine_wolffish,裂脊狼鱼,/get_fish_spine_wolffish_1,(稀有)
+鱼类,fish,gel_lanternfish,胶质灯笼鱼,/get_fish_gel_lanternfish_1,(稀有)
+鱼类,fish,multi_barb_king,多须鲷王,/get_fish_multi_barb_king_1,(稀有)
+鱼类,fish,dead_giant_cod,亡骸巨鳕,/get_fish_dead_giant_cod_1,(史诗)
+鱼类,fish,plague_tentacle,海疫触手鱼,/get_fish_plague_tentacle_1,(史诗)
+鱼类,fish,wreck_ghost_shark,沉船幽鲛,/get_fish_wreck_ghost_shark_1,(史诗)
+鱼类,fish,abyss_core_fish,渊核巨鱼,/get_fish_abyss_core_fish_1,(传说)

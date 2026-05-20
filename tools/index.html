@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zombie-World 作弊码查找工具</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+:root {
+  --bg-primary: #0a0a14;
+  --bg-secondary: #12121e;
+  --bg-card: #1a1a2e;
+  --bg-card-hover: #202040;
+  --text-primary: #e8e8f0;
+  --text-secondary: #9090a8;
+  --text-muted: #606078;
+  --accent: #e94560;
+  --accent-glow: rgba(233,69,96,0.3);
+  --accent-subtle: rgba(233,69,96,0.1);
+  --orange: #f59e0b;
+  --green: #10b981;
+  --green-glow: rgba(16,185,129,0.3);
+  --border: rgba(233,69,96,0.15);
+  --border-hover: rgba(233,69,96,0.4);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(233,69,96,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(245,158,11,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(16,185,129,0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+.header {
+  padding: 28px 0 20px;
+  text-align: center;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; width: 80%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.logo {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-bottom: 8px;
+}
+
+.logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--accent), #c73a52);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.logo h1 {
+  font-size: 26px; font-weight: 900;
+  background: linear-gradient(135deg, #fff 30%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 13px; color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+.search-section { padding: 20px 0 12px; }
+
+.search-box {
+  position: relative;
+  max-width: 640px; margin: 0 auto;
+}
+
+.search-box input {
+  width: 100%; padding: 14px 20px 14px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-size: 15px; font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 25px var(--accent-glow), inset 0 0 25px var(--accent-subtle);
+}
+
+.search-box input::placeholder { color: var(--text-muted); }
+
+.search-icon {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; opacity: 0.5;
+  pointer-events: none;
+}
+
+.search-clear {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--text-muted);
+  font-size: 18px; cursor: pointer; padding: 4px 8px;
+  display: none; border-radius: 4px;
+}
+
+.search-clear:hover { color: var(--text-primary); background: var(--accent-subtle); }
+.search-box input:not(:placeholder-shown) ~ .search-clear { display: block; }
+
+.categories {
+  display: flex; gap: 8px; padding: 16px 0;
+  flex-wrap: wrap; justify-content: center;
+}
+
+.cat-btn {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.cat-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--accent-subtle);
+}
+
+.cat-btn.active {
+  background: linear-gradient(135deg, var(--accent), #c73a52);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.cat-count {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.stats-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 4px 12px;
+  font-size: 13px; color: var(--text-muted);
+}
+
+.stats-bar strong { color: var(--text-secondary); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  padding-bottom: 40px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.card-name {
+  font-size: 15px; font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-rarity {
+  font-size: 11px; padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.rarity-common { background: rgba(148,148,148,0.15); color: #949494; }
+.rarity-uncommon { background: rgba(16,185,129,0.15); color: #34d399; }
+.rarity-rare { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.rarity-epic { background: rgba(139,92,246,0.15); color: #a78bfa; }
+.rarity-legendary { background: rgba(245,158,11,0.15); color: #fbbf24; }
+
+.card-extra {
+  font-size: 12px; color: var(--text-secondary);
+  margin-bottom: 10px; line-height: 1.5;
+}
+
+.card-command {
+  display: flex; align-items: center;
+  background: rgba(0,0,0,0.3);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.card-command code {
+  flex: 1; padding: 8px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--orange);
+  overflow-x: auto; white-space: nowrap;
+}
+
+.copy-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 8px 14px;
+  background: transparent;
+  border: none; border-left: 1px solid rgba(255,255,255,0.05);
+  color: var(--text-secondary);
+  font-size: 12px; font-family: inherit; cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+.copy-btn.copied {
+  background: var(--green);
+  color: #fff;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+.empty h3 { font-size: 18px; margin-bottom: 6px; color: var(--text-secondary); }
+.empty p { font-size: 14px; }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--bg-card); border: 1px solid var(--green);
+  padding: 12px 24px; border-radius: var(--radius-sm);
+  font-size: 14px; color: var(--green); opacity: 0;
+  transition: all 0.4s ease; z-index: 100;
+  box-shadow: 0 0 30px var(--green-glow);
+  white-space: nowrap;
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.loading {
+  text-align: center; padding: 80px 20px; color: var(--text-muted);
+}
+
+.spinner {
+  width: 36px; height: 36px; margin: 0 auto 16px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+.tab-nav {
+  display: flex; gap: 4px; padding: 16px 0 0;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px; font-family: inherit; cursor: pointer;
+  transition: all 0.25s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--accent-subtle);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 700;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.encyclopedia { padding-bottom: 40px; }
+
+.enc-section { margin-bottom: 36px; }
+
+.enc-title {
+  font-size: 18px; font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.enc-warning {
+  font-size: 13px; color: var(--accent);
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: var(--accent-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.enc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.enc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  transition: all 0.3s ease;
+}
+
+.enc-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+
+.enc-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+
+.enc-card-name {
+  font-size: 14px; font-weight: 700;
+  color: var(--text-primary);
+}
+
+.enc-card-type {
+  font-size: 11px; color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.enc-card-desc {
+  font-size: 12px; color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.rarity-group { margin-bottom: 16px; }
+
+.rarity-group-title {
+  font-size: 13px; font-weight: 600;
+  margin-bottom: 8px; padding-left: 4px;
+}
+
+.zombie-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.zombie-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.zombie-card-name {
+  font-size: 16px; font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.zombie-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.zombie-stat {
+  display: flex; align-items: center; gap: 6px;
+}
+
+.zombie-stat-label { color: var(--text-muted); }
+
+.zombie-stat-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.zombie-desc {
+  font-size: 12px; color: var(--text-secondary);
+  line-height: 1.5;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.zombie-ability {
+  display: inline-block;
+  font-size: 11px; padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(233,69,96,0.1);
+  color: var(--accent);
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+.npc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.npc-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.npc-card-name {
+  font-size: 16px; font-weight: 700;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.npc-card-id {
+  font-size: 11px; color: var(--text-muted);
+  margin-bottom: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.npc-card-desc {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.enc-search-section {
+  padding: 12px 0 16px;
+}
+
+.enc-search-box {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.enc-search-box input {
+  width: 100%; padding: 10px 16px 10px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 14px; font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.enc-search-box input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.enc-search-box input::placeholder { color: var(--text-muted); }
+
+.enc-search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 15px; opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .logo h1 { font-size: 20px; }
+  .grid { grid-template-columns: 1fr; gap: 10px; }
+  .stats-bar { flex-direction: column; gap: 4px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .logo-icon { width: 36px; height: 36px; font-size: 18px; }
+  .logo h1 { font-size: 17px; }
+  .card-command code { font-size: 11px; }
+  .copy-btn { padding: 8px 10px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">🧟</div>
+      <h1>Zombie-World 作弊码查找工具</h1>
+    </div>
+    <p class="subtitle">末日生存文字游戏 · 开发者测试辅助工具</p>
+  </header>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="cheats">🔍 作弊码查找</button>
+    <button class="tab-btn" data-tab="items">📦 物品图鉴</button>
+    <button class="tab-btn" data-tab="zombies">🧟 丧尸图鉴</button>
+    <button class="tab-btn" data-tab="npcs">👤 NPC图鉴</button>
+  </div>
+
+  <div class="tab-content active" id="tab-cheats">
+  <div class="search-section">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜索物品名称、ID或命令... 例如：寰宇之剑、AWM、抗感染血清" autofocus>
+      <button class="search-clear" id="clearBtn">✕</button>
+    </div>
+  </div>
+
+  <div class="categories" id="categories"></div>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <p>正在加载作弊码数据...</p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-items">
+    <div class="enc-search-section">
+      <div class="enc-search-box">
+        <span class="enc-search-icon">🔍</span>
+        <input type="text" id="encItemSearch" placeholder="搜索物品名称或属性...">
+      </div>
+    </div>
+    <div id="items-encyclopedia"></div>
+  </div>
+
+  <div class="tab-content" id="tab-zombies">
+    <div class="enc-search-section">
+      <div class="enc-search-box">
+        <span class="enc-search-icon">🔍</span>
+        <input type="text" id="encZombieSearch" placeholder="搜索丧尸名称或能力...">
+      </div>
+    </div>
+    <div id="zombies-encyclopedia"></div>
+  </div>
+
+  <div class="tab-content" id="tab-npcs">
+    <div class="enc-search-section">
+      <div class="enc-search-box">
+        <span class="enc-search-icon">🔍</span>
+        <input type="text" id="encNpcSearch" placeholder="搜索NPC名称或描述...">
+      </div>
+    </div>
+    <div id="npcs-encyclopedia"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ 已复制到剪贴板</div>
+
+<script>
+const state = { all: [], filtered: [], category: 'all' };
+const encState = { items: [], zombies: [], bosses: [], npcs: [], all: [] };
+
+const RARITY_LABELS = { common: '普通', uncommon: '优秀', rare: '稀有', epic: '史诗', legendary: '传说' };
+const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+
+const SUB_CATEGORY_ICONS = {
+  '普通食物': '🍞', '水果': '🍎', '饮品': '🥤', '药品': '💊',
+  '作物': '🌾', '种子': '🌱', '鱼类': '🐟', '建材': '🧱',
+  '近战武器': '⚔️', '远程武器': '🔫', '弹药': '🎯', '背包': '🎒',
+  '身份牌': '🪪', '徽章': '🏅', '任务道具': '📜', '货币': '💰'
+};
+
+const SUB_CATEGORY_ORDER = [
+  '普通食物', '水果', '饮品', '药品', '作物', '种子', '鱼类', '建材',
+  '近战武器', '远程武器', '弹药', '背包', '身份牌', '徽章', '任务道具', '货币'
+];
+
+function parseCSVLine(line) {
+  const vals = [];
+  let cur = '', inQ = false;
+  for (const ch of line) {
+    if (ch === '"') { inQ = !inQ; continue; }
+    if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; continue; }
+    cur += ch;
+  }
+  vals.push(cur.trim());
+  return vals;
+}
+
+async function loadCSV() {
+  const res = await fetch('cheat_codes.csv');
+  const text = await res.text();
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+  state.all = lines.slice(1).map(line => {
+    const vals = parseCSVLine(line);
+    return headers.reduce((obj, h, i) => ({ ...obj, [h]: vals[i] || '' }), {});
+  });
+}
+
+async function loadEncyclopedia() {
+  const res = await fetch('encyclopedia.csv');
+  const text = await res.text();
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+  const all = lines.slice(1).map(line => {
+    const vals = parseCSVLine(line);
+    return headers.reduce((obj, h, i) => ({ ...obj, [h]: vals[i] || '' }), {});
+  });
+  encState.all = all;
+  encState.items = all.filter(i => !['丧尸', 'BOSS', 'NPC'].includes(i.category));
+  encState.zombies = all.filter(i => i.category === '丧尸');
+  encState.bosses = all.filter(i => i.category === 'BOSS');
+  encState.npcs = all.filter(i => i.category === 'NPC');
+}
+
+function getRarity(item) {
+  const extra = item.extra_info || '';
+  if (extra.includes('(传说)') || extra.includes('(传奇)') || extra.includes('传奇')) return 'legendary';
+  if (extra.includes('(史诗)') || extra.includes('史诗')) return 'epic';
+  if (extra.includes('(稀有)') || extra.includes('稀有')) return 'rare';
+  if (extra.includes('(优秀)') || extra.includes('优秀')) return 'uncommon';
+  if (extra.includes('(普通)')) return 'common';
+  return '';
+}
+
+function getCategories() {
+  const map = {};
+  for (const item of state.all) {
+    const cat = item.category;
+    if (!map[cat]) map[cat] = 0;
+    map[cat]++;
+  }
+  return map;
+}
+
+function filter() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const cat = state.category;
+  state.filtered = state.all.filter(item => {
+    if (cat !== 'all' && item.category !== cat) return false;
+    if (!q) return true;
+    return item.item_name.toLowerCase().includes(q) ||
+           item.item_id.toLowerCase().includes(q) ||
+           item.command.toLowerCase().includes(q) ||
+           item.category.toLowerCase().includes(q) ||
+           (item.extra_info || '').toLowerCase().includes(q);
+  });
+  render();
+}
+
+function renderCategories() {
+  const cats = getCategories();
+  const container = document.getElementById('categories');
+  let html = `<button class="cat-btn ${state.category === 'all' ? 'active' : ''}" data-cat="all">全部 <span class="cat-count">${state.all.length}</span></button>`;
+  for (const [cat, count] of Object.entries(cats)) {
+    html += `<button class="cat-btn ${state.category === cat ? 'active' : ''}" data-cat="${cat}">${cat} <span class="cat-count">${count}</span></button>`;
+  }
+  container.innerHTML = html;
+  container.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.category = btn.dataset.cat;
+      container.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filter();
+    });
+  });
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  const stats = document.getElementById('statsBar');
+  const total = state.all.length;
+  const showing = state.filtered.length;
+
+  stats.innerHTML = `<span>共 <strong>${total}</strong> 条作弊码${state.category !== 'all' ? `，分类：${state.category}` : ''}</span><span>当前显示：<strong>${showing}</strong> 条</span>`;
+
+  if (showing === 0) {
+    grid.innerHTML = `<div class="empty">
+      <div class="empty-icon">🔎</div>
+      <h3>没有找到匹配的作弊码</h3>
+      <p>试试其他关键词，或点击"全部"查看所有指令</p>
+    </div>`;
+    return;
+  }
+
+  let html = '';
+  for (const item of state.filtered) {
+    const rarity = getRarity(item);
+    const rarityLabel = rarity ? rarity.replace('common','普通').replace('uncommon','优秀').replace('rare','稀有').replace('epic','史诗').replace('legendary','传奇') : '';
+    html += `<div class="card">
+      <div class="card-header">
+        <span class="card-name">${item.item_name}</span>
+        ${rarity ? `<span class="card-rarity rarity-${rarity}">${rarityLabel}</span>` : ''}
+      </div>
+      <div class="card-extra">${item.extra_info || item.category}</div>
+      <div class="card-command">
+        <code>${item.command}</code>
+        <button class="copy-btn" data-cmd="${item.command}">📋 复制</button>
+      </div>
+    </div>`;
+  }
+  grid.innerHTML = html;
+
+  grid.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cmd = btn.dataset.cmd;
+      navigator.clipboard.writeText(cmd).then(() => {
+        btn.classList.add('copied');
+        btn.textContent = '✅ 已复制';
+        showToast(`已复制: ${cmd}`);
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '📋 复制'; }, 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = cmd; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(`已复制: ${cmd}`);
+      });
+    });
+  });
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = `✅ ${msg}`;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function renderItemsEncyclopedia(searchQuery) {
+  const container = document.getElementById('items-encyclopedia');
+  let items = encState.items;
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    items = items.filter(i =>
+      (i.name || '').toLowerCase().includes(q) ||
+      (i.id || '').toLowerCase().includes(q) ||
+      (i.desc || '').toLowerCase().includes(q) ||
+      (i.stats || '').toLowerCase().includes(q) ||
+      (i.sub_category || '').toLowerCase().includes(q)
+    );
+  }
+
+  if (items.length === 0) {
+    container.innerHTML = `<div class="empty">
+      <div class="empty-icon">📦</div>
+      <h3>没有找到匹配的物品</h3>
+      <p>试试其他关键词</p>
+    </div>`;
+    return;
+  }
+
+  const grouped = {};
+  for (const item of items) {
+    const sub = item.sub_category || '其他';
+    if (!grouped[sub]) grouped[sub] = [];
+    grouped[sub].push(item);
+  }
+
+  let html = '<div class="encyclopedia">';
+
+  for (const sub of SUB_CATEGORY_ORDER) {
+    const list = grouped[sub];
+    if (!list) continue;
+
+    const icon = SUB_CATEGORY_ICONS[sub] || '📦';
+    html += `<div class="enc-section">`;
+    html += `<h3 class="enc-title">${icon} ${sub} <span style="font-size:13px;color:var(--text-muted);font-weight:400;">(${list.length})</span></h3>`;
+
+    if (sub === '鱼类') {
+      html += '<div class="enc-warning">⚠️ 有毒不可食用</div>';
+    }
+
+    const needsRarityGrouping = ['鱼类', '近战武器', '远程武器', '背包'].includes(sub);
+
+    if (needsRarityGrouping) {
+      const byRarity = {};
+      for (const item of list) {
+        const r = item.rarity || 'common';
+        if (!byRarity[r]) byRarity[r] = [];
+        byRarity[r].push(item);
+      }
+      for (const rarity of RARITY_ORDER) {
+        const rarityList = byRarity[rarity];
+        if (!rarityList) continue;
+        const label = RARITY_LABELS[rarity];
+        html += `<div class="rarity-group">`;
+        html += `<div class="rarity-group-title"><span class="card-rarity rarity-${rarity}">${label}</span></div>`;
+        html += `<div class="enc-grid">`;
+        for (const item of rarityList) {
+          html += renderEncCard(item);
+        }
+        html += '</div></div>';
+      }
+    } else {
+      html += '<div class="enc-grid">';
+      for (const item of list) {
+        html += renderEncCard(item);
+      }
+      html += '</div>';
+    }
+
+    html += '</div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function renderEncCard(item) {
+  const rarity = item.rarity;
+  const label = rarity ? RARITY_LABELS[rarity] : '';
+  let html = '<div class="enc-card">';
+  html += '<div class="enc-card-header">';
+  html += `<span class="enc-card-name">${item.name}</span>`;
+  if (rarity) html += `<span class="card-rarity rarity-${rarity}">${label}</span>`;
+  html += '</div>';
+  if (item.stats) {
+    html += `<div class="enc-card-desc">${item.stats}</div>`;
+  } else if (item.desc) {
+    html += `<div class="enc-card-desc">${item.desc}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderZombiesEncyclopedia(searchQuery) {
+  const container = document.getElementById('zombies-encyclopedia');
+  let zombies = encState.zombies;
+  let bosses = encState.bosses;
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    zombies = zombies.filter(z =>
+      (z.name || '').toLowerCase().includes(q) ||
+      (z.desc || '').toLowerCase().includes(q) ||
+      (z.stats || '').toLowerCase().includes(q)
+    );
+    bosses = bosses.filter(b =>
+      (b.name || '').toLowerCase().includes(q) ||
+      (b.desc || '').toLowerCase().includes(q) ||
+      (b.stats || '').toLowerCase().includes(q)
+    );
+  }
+
+  let html = '<div class="encyclopedia">';
+
+  const normalZombies = zombies.filter(z => z.sub_category === '普通丧尸');
+  const eliteZombies = zombies.filter(z => z.sub_category === '精英丧尸');
+
+  if (normalZombies.length > 0) {
+    html += '<div class="enc-section">';
+    html += `<h3 class="enc-title">🧟 普通丧尸 <span style="font-size:13px;color:var(--text-muted);font-weight:400;">(${normalZombies.length})</span></h3>`;
+    html += '<div class="enc-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">';
+    for (const z of normalZombies) {
+      html += renderZombieCard(z);
+    }
+    html += '</div></div>';
+  }
+
+  if (eliteZombies.length > 0) {
+    html += '<div class="enc-section">';
+    html += `<h3 class="enc-title">💀 精英丧尸 <span style="font-size:13px;color:var(--text-muted);font-weight:400;">(${eliteZombies.length})</span></h3>`;
+    html += '<div class="enc-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">';
+    for (const z of eliteZombies) {
+      html += renderZombieCard(z);
+    }
+    html += '</div></div>';
+  }
+
+  if (bosses.length > 0) {
+    html += '<div class="enc-section">';
+    html += `<h3 class="enc-title">👑 BOSS <span style="font-size:13px;color:var(--text-muted);font-weight:400;">(${bosses.length})</span></h3>`;
+    html += '<div class="enc-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">';
+    for (const b of bosses) {
+      html += renderZombieCard(b, true);
+    }
+    html += '</div></div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function renderZombieCard(z, isBoss) {
+  const stats = (z.stats || '').split(' ');
+  let hp = '', damage = '', dodge = '', abilities = [];
+
+  for (const s of stats) {
+    if (s.startsWith('HP:')) hp = s.replace('HP:', '');
+    else if (s.startsWith('伤害:')) damage = s.replace('伤害:', '');
+    else if (s.startsWith('闪避:')) dodge = s.replace('闪避:', '');
+    else if (s.startsWith('能力:')) abilities = s.replace('能力:', '').split('/');
+  }
+
+  const rarity = z.rarity || '';
+  const rarityLabel = rarity ? RARITY_LABELS[rarity] : '';
+
+  let html = '<div class="zombie-card">';
+  html += `<div class="zombie-card-name">${z.name}`;
+  if (rarity) html += ` <span class="card-rarity rarity-${rarity}" style="font-size:11px;vertical-align:middle;">${rarityLabel}</span>`;
+  html += '</div>';
+  html += '<div class="zombie-stats">';
+  if (hp) html += `<div class="zombie-stat"><span class="zombie-stat-label">❤️ HP</span><span class="zombie-stat-value">${hp}</span></div>`;
+  if (damage) html += `<div class="zombie-stat"><span class="zombie-stat-label">⚔️ 伤害</span><span class="zombie-stat-value">${damage}</span></div>`;
+  if (dodge) html += `<div class="zombie-stat"><span class="zombie-stat-label">💨 闪避</span><span class="zombie-stat-value">${dodge}</span></div>`;
+  html += '</div>';
+  if (abilities.length > 0) {
+    html += '<div>' + abilities.map(a => `<span class="zombie-ability">${a}</span>`).join('') + '</div>';
+  }
+  if (z.desc) {
+    html += `<div class="zombie-desc">${z.desc}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderNpcsEncyclopedia(searchQuery) {
+  const container = document.getElementById('npcs-encyclopedia');
+  let npcs = encState.npcs;
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    npcs = npcs.filter(n =>
+      (n.name || '').toLowerCase().includes(q) ||
+      (n.desc || '').toLowerCase().includes(q) ||
+      (n.sub_category || '').toLowerCase().includes(q) ||
+      (n.id || '').toLowerCase().includes(q)
+    );
+  }
+
+  if (npcs.length === 0) {
+    container.innerHTML = `<div class="empty">
+      <div class="empty-icon">👤</div>
+      <h3>没有找到匹配的NPC</h3>
+      <p>试试其他关键词</p>
+    </div>`;
+    return;
+  }
+
+  const grouped = {};
+  for (const npc of npcs) {
+    const sub = npc.sub_category || '其他';
+    if (!grouped[sub]) grouped[sub] = [];
+    grouped[sub].push(npc);
+  }
+
+  const subOrder = ['可交互NPC', '地图NPC', '城堡NPC', '阵地NPC'];
+  const subIcons = { '可交互NPC': '🤝', '地图NPC': '🗺️', '城堡NPC': '🏰', '阵地NPC': '⛺' };
+
+  let html = '<div class="encyclopedia">';
+
+  for (const sub of subOrder) {
+    const list = grouped[sub];
+    if (!list) continue;
+    const icon = subIcons[sub] || '👤';
+    html += '<div class="enc-section">';
+    html += `<h3 class="enc-title">${icon} ${sub} <span style="font-size:13px;color:var(--text-muted);font-weight:400;">(${list.length})</span></h3>`;
+    html += '<div class="enc-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">';
+    for (const npc of list) {
+      html += '<div class="npc-card">';
+      html += `<div class="npc-card-name">${npc.name}</div>`;
+      if (npc.id) html += `<div class="npc-card-id">ID: ${npc.id}</div>`;
+      if (npc.desc) html += `<div class="npc-card-desc">${npc.desc}</div>`;
+      html += '</div>';
+    }
+    html += '</div></div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  document.getElementById('loading').style.display = 'block';
+  try {
+    await loadCSV();
+    await loadEncyclopedia();
+    document.getElementById('loading').style.display = 'none';
+    renderCategories();
+    filter();
+    renderItemsEncyclopedia();
+    renderZombiesEncyclopedia();
+    renderNpcsEncyclopedia();
+  } catch (e) {
+    document.getElementById('loading').innerHTML = `<p style="color:var(--accent)">❌ 加载失败：${e.message}</p>`;
+  }
+
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  input.addEventListener('input', filter);
+  clearBtn.addEventListener('click', () => { input.value = ''; filter(); input.focus(); });
+
+  document.getElementById('encItemSearch').addEventListener('input', function() {
+    renderItemsEncyclopedia(this.value.trim());
+  });
+  document.getElementById('encZombieSearch').addEventListener('input', function() {
+    renderZombiesEncyclopedia(this.value.trim());
+  });
+  document.getElementById('encNpcSearch').addEventListener('input', function() {
+    renderNpcsEncyclopedia(this.value.trim());
+  });
+});
+
+document.querySelector('.tab-nav').addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  const tab = btn.dataset.tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+});
+</script>
+</body>
+</html>
